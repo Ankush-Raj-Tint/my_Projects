@@ -1,4 +1,3 @@
-import csv
 from bs4 import BeautifulSoup
 import html5lib
 import requests
@@ -75,8 +74,33 @@ def travelAdvisiory():
 
 
 
+        
+                    
+def documents():
+
+    url = "https://europa.eu/youreurope/citizens/travel/entry-exit/non-eu-nationals/index_en.htm"
+    responseObj = requests.get(url)
+
+    soup = BeautifulSoup(responseObj.content, 'html5lib')
+
+    #print(soup.prettify())
+
+    table = soup.find_all('p')
+    info = []
+
+    for item in table:
+        
+        temp = []
+        temp.append(item.text)
+        info.append(temp)
+
+    for item in range(1, len(info)-5):
+        print(info[item])
+        print('\n')
 
 
+        
+        
 
 # DRIVER CODE STARTS
 
@@ -127,8 +151,6 @@ while keep_going == True:
 
 
 
-
-
 print('\n')
 print("Want to know about some Do's and Dont's in Europe?")
 
@@ -154,8 +176,6 @@ while(keep_going==True):
 
 
 
-
-
 print('\n')
 print("Would You like to see the 'Latest European Travel Restrictions ?")
 
@@ -175,4 +195,30 @@ while(keep_going==True):
     else:
         print("Invalid Input! Please try again.")
         val = input("Enter 'y' for yes and 'n' for no \n")
+        keep_going = True
+        
+        
+        
+        
+       
+
+print('\n')
+print("Interested in finding information about Passport and Visa ?")
+
+val = input("Enter 'y' for yes and 'n' for no \n ")
+print('\n')
+
+keep_going = True
+
+while(keep_going==True):
+    if val == "y":
+        documents()
+        keep_going = False
+
+    elif val == "n":
+        keep_going = False
+
+    else:
+        print("Invalid Input! Please try again.")
+        val = input("Enter 'y' for yes and 'n' for no '\n' ")
         keep_going = True
