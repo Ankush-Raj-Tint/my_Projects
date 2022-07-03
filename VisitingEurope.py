@@ -68,7 +68,7 @@ def travelAdvisiory():
         temp.append(item.text)
         info.append(temp)
 
-    for item in range(2, len(info)-203):
+    for item in range(2, len(info)-7):
         print(info[item])
         print('\n')
 
